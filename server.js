@@ -4,9 +4,9 @@ require("./config/db");
 const express = require("express");
 const cors = require("cors");
 
-const app = express();   // ✅ MUST COME BEFORE app.use
+const app = express();  
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 
@@ -16,13 +16,11 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 
-// Route usage (AFTER app is created)
 app.use("/api/test", testRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// Default route
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
